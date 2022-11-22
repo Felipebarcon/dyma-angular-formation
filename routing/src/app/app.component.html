@@ -4,8 +4,19 @@
 >
   <nav>
     <ul>
-      <li>Homepage</li>
-      <li>Users</li>
+      <li
+        [routerLinkActiveOptions]="{
+        exact: true
+        }"
+        routerLink="/"
+        routerLinkActive="active"
+      >Homepage
+      </li>
+      <li
+        [routerLink]="['users']"
+        routerLinkActive="active"
+      >Users
+      </li>
     </ul>
   </nav>
   <div>

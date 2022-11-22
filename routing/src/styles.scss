@@ -164,6 +164,13 @@ html {
   }
 }
 
+.active {
+  background-color: var(--primary);
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+}
+
 // DEBUG
 
 .d1 {
