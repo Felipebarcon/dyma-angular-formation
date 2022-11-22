@@ -1,8 +1,12 @@
 <h1 class="m-10">Users</h1>
 <ul class="list--primary m-10">
   <li
-    (click)="redirection(user)"
     *ngFor="let user of users"
+    [queryParams]="{name: user.name}"
+    [routerLink]="[user.id]"
+    fragment="foo"
+    queryParamsHandling="merge"
   >{{ user.name }}
   </li>
 </ul>
+<router-outlet></router-outlet>

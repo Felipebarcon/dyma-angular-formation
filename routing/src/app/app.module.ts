@@ -15,10 +15,12 @@ const APP_ROUTES: Routes = [
   {
     path: 'users',
     component: UsersComponent,
-  },
-  {
-    path: 'users/:id',
-    component: UserComponent,
+    children: [
+      {
+        path: ':id',
+        component: UserComponent,
+      },
+    ],
   },
 ];
 

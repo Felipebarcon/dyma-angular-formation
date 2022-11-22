@@ -31,13 +31,14 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public redirection(user: User): void {
-    this.router.navigate([user.id], {
-      relativeTo: this.activatedRoute,
-      queryParams: {
-        name: user.name,
-      },
-      fragment: 'foo',
-    });
-  }
+  // public redirection(user: User): void {
+  //   this.router.navigate([user.id], {
+  //     relativeTo: this.activatedRoute,
+  //     queryParams: {
+  //       name: user.name,
+  //     },
+  //     queryParamsHandling: 'merge',
+  //     fragment: 'foo',
+  //   });
+  // }
 }
