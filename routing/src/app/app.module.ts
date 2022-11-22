@@ -6,6 +6,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { UsersComponent } from './users/users.component';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user/user.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const APP_ROUTES: Routes = [
   {
@@ -22,6 +23,7 @@ const APP_ROUTES: Routes = [
       },
     ],
   },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
@@ -30,6 +32,7 @@ const APP_ROUTES: Routes = [
     HomepageComponent,
     UsersComponent,
     UserComponent,
+    NotFoundComponent,
   ],
   imports: [BrowserModule, RouterModule.forRoot(APP_ROUTES)],
   providers: [],
