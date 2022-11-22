@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface User {
   id: number;
@@ -26,7 +27,17 @@ export class UsersComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {}
+
+  public redirection(user: User): void {
+    this.router.navigate([user.id], {
+      relativeTo: this.activatedRoute,
+      queryParams: {
+        name: user.name,
+      },
+      fragment: 'foo',
+    });
+  }
 }

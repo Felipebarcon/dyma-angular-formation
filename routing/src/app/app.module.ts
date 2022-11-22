@@ -17,7 +17,7 @@ const APP_ROUTES: Routes = [
     component: UsersComponent,
   },
   {
-    path: 'users/:id/:name',
+    path: 'users/:id',
     component: UserComponent,
   },
 ];
