@@ -14,6 +14,7 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'users',
+
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
     component: UsersComponent,
@@ -25,6 +26,12 @@ export const APP_ROUTES: Routes = [
       },
       {
         path: ':id',
+        data: {
+          title: 'User list',
+        },
+        resolve: {
+          user: AuthGuard,
+        },
         component: UserComponent,
       },
     ],

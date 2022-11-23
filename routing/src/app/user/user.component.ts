@@ -27,5 +27,9 @@ export class UserComponent implements OnInit {
     this.activatedRoute.fragment.subscribe((fragment: string | null) => {
       console.log(fragment);
     });
+
+    this.activatedRoute.data.subscribe((data: {}) => {
+      console.log(data);
+    });
   }
 }
