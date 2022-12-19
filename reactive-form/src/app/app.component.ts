@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +12,29 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  validatorPaul(formControl: AbstractControl): { [p: string]: boolean } | null {
+    if (formControl.value === 'paul') {
+      return { notPaul: true };
+    } else {
+      return null;
+    }
+  }
+
+  validatorAsync(
+    formControl: AbstractControl
+  ): Promise<{ [s: string]: boolean } | null> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(null);
+      }, 50000);
+    });
+  }
   public form: FormGroup = new FormGroup({
-    nom: new FormControl(''),
+    nom: new FormControl('', [
+      this.validatorPaul,
+      Validators.required,
+      this.validatorAsync,
+    ]),
     email: new FormControl(''),
     password: new FormControl(''),
   });
@@ -32,8 +58,7 @@ export class AppComponent implements OnInit {
   }
 
   public submit(): void {
-    // console.log(this.form.value);
+    console.log(this.form);
     // console.log(this.form.getRawValue());
-    this.form.reset();
   }
 }
