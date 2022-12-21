@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -6,13 +6,14 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   /*  public form: FormGroup = new FormGroup({
       email: new FormControl(''),
       hobbies: new FormArray([]),
@@ -27,6 +28,8 @@ export class AppComponent implements OnInit {
     password: [''],
   });
 
+  public subscription = new Subscription();
+
   constructor(private fb: FormBuilder) {}
 
   get hobbies() {
@@ -34,11 +37,28 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subscription.add(
+      this.form.statusChanges.subscribe((status) => {
+        console.log(status);
+      })
+    );
+
+    this.subscription.add(
+      this.form.valueChanges.subscribe((value) => {
+        console.log(value);
+      })
+    );
+
     console.log(this.form);
   }
 
   addHobby() {
-    this.hobbies.push(new FormControl(''));
+    const control = new FormControl('');
+    control.valueChanges.subscribe((value) => {
+      console.log(value);
+    });
+
+    this.hobbies.push(control);
   }
 
   deleteHobby(index: number) {
@@ -47,5 +67,9 @@ export class AppComponent implements OnInit {
 
   submit() {
     console.log(this.form.value);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
