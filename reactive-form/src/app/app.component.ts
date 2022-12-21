@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +20,12 @@ export class AppComponent implements OnInit {
       nom: new FormControl(''),
     });*/
 
-  public form: FormGroup;
+  public form: FormGroup = this.fb.group({
+    nom: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    hobbies: this.fb.array([]),
+    password: [''],
+  });
 
   constructor(private fb: FormBuilder) {}
 
@@ -23,13 +34,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      email: [''],
-      hobbies: this.fb.array([]),
-      password: [''],
-      name: [''],
-    });
-
     console.log(this.form);
   }
 
