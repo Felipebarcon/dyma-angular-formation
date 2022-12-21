@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,20 +7,29 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public form: FormGroup = new FormGroup({
-    email: new FormControl(''),
-    hobbies: new FormArray([]),
-    password: new FormControl(''),
-    nom: new FormControl(''),
-  });
+  /*  public form: FormGroup = new FormGroup({
+      email: new FormControl(''),
+      hobbies: new FormArray([]),
+      password: new FormControl(''),
+      nom: new FormControl(''),
+    });*/
 
-  constructor() {}
+  public form: FormGroup;
+
+  constructor(private fb: FormBuilder) {}
 
   get hobbies() {
     return this.form.get('hobbies') as FormArray;
   }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      email: [''],
+      hobbies: this.fb.array([]),
+      password: [''],
+      name: [''],
+    });
+
     console.log(this.form);
   }
 
