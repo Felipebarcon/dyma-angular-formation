@@ -26,7 +26,29 @@ export class AppComponent implements OnInit, OnDestroy {
     email: ['', [Validators.required, Validators.email]],
     hobbies: this.fb.array([]),
     password: [''],
+    gender: [''],
+    city: ['genève'],
+    majeur: [''],
   });
+
+  public cities = [
+    {
+      label: 'Zurich',
+      value: 'zurich',
+    },
+    {
+      label: 'Genève',
+      value: 'genève',
+    },
+    {
+      label: 'Nyon',
+      value: 'nyon',
+    },
+    {
+      label: 'Lausanne',
+      value: 'lausanne',
+    },
+  ];
 
   public subscription = new Subscription();
 
