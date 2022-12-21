@@ -4,7 +4,6 @@
     (ngSubmit)="submit()"
     [formGroup]="form"
   >
-
     <div class="d-flex flex-column form-group">
       <label>Nom</label>
       <input
@@ -14,7 +13,6 @@
         type="text"
       />
     </div>
-
     <div class="d-flex flex-column form-group">
       <label>Email</label>
       <input
@@ -24,26 +22,29 @@
         type="email"
       />
     </div>
-
     <div
       class="d-flex flex-column form-group"
       formArrayName="hobbies"
     >
-      <label>Hobby</label>
+      <label>Hobbies</label>
       <button
         (click)="addHobby()"
         class="btn btn-primary"
-      >Ajouter
-       Hobby
-      </button>
-      <input
-        *ngFor="let hobby of hobbies.controls; let index = index"
-        [formControlName]="index"
-        class="m-10"
-        type="text"
       >
+        Ajouter hobby
+      </button>
+      <div *ngFor="let hobby of hobbies.controls; let index = index">
+        <input
+          [formControlName]="index"
+          style="margin-top: 5px;"
+          type="text"
+        />
+        <span
+          (click)="deleteHobby(index)"
+          class="delete"
+        >&#10060;</span>
+      </div>
     </div>
-
     <div class="d-flex flex-column form-group">
       <label>Mot de passe</label>
       <input
@@ -53,24 +54,16 @@
         type="password"
       />
     </div>
-
-    <div class="d-flex flex-row">
-
-      <div class="btn">
-        <button
-          class="btn btn-primary"
-          type="submit"
-        >Inscription
-        </button>
-      </div>
-
+    <div class="btn">
+      <button
+        class="btn btn-primary"
+        type="submit"
+      >Inscription
+      </button>
     </div>
   </form>
 </div>
 <hr />
-
 <div class="container">
   <p>Value: {{ form.value | json }}</p>
-  <p>Status: {{ form.status | json }}</p>
 </div>
-
