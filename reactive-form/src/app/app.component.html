@@ -1,56 +1,69 @@
 <hr />
 <div class="container">
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form
+    (ngSubmit)="submit()"
+    [formGroup]="form"
+  >
 
     <div class="d-flex flex-column form-group">
       <label>Nom</label>
       <input
         formControlName="nom"
-        type="text"
         name="name"
         placeholder="prénom nom"
+        type="text"
       />
     </div>
 
-    <div class="error" *ngIf="nom?.errors?.['required'] && nom?.touched">
-      <p>Vous devez renseigner un nom</p>
+    <div class="d-flex flex-column form-group">
+      <label>Email</label>
+      <input
+        formControlName="email"
+        name="email"
+        placeholder="adresse email"
+        type="email"
+      />
     </div>
 
-    <div formGroupName="login">
-      <div class="d-flex flex-column form-group">
-        <label>Email</label>
-        <input
-          formControlName="email"
-          type="email"
-          name="email"
-          placeholder="adresse email"
-        />
-      </div>
+    <div
+      class="d-flex flex-column form-group"
+      formArrayName="hobbies"
+    >
+      <label>Hobby</label>
+      <button
+        (click)="addHobby()"
+        class="btn btn-primary"
+      >Ajouter
+       Hobby
+      </button>
+      <input
+        *ngFor="let hobby of hobbies.controls; let index = index"
+        [formControlName]="index"
+        class="m-10"
+        type="text"
+      >
+    </div>
 
-      <div class="d-flex flex-column form-group">
-        <label>Mot de passe</label>
-        <input
-          formControlName="password"
-          type="password"
-          name="password"
-          placeholder="mot de passe"
-        />
-      </div>
-
+    <div class="d-flex flex-column form-group">
+      <label>Mot de passe</label>
+      <input
+        formControlName="password"
+        name="password"
+        placeholder="mot de passe"
+        type="password"
+      />
     </div>
 
     <div class="d-flex flex-row">
 
       <div class="btn">
-        <button type="submit" class="btn btn-primary">Inscription</button>
-      </div>
-
-      <div class="btn">
-        <button class="btn btn-danger" (click)="reinitialiser()">
-          Annuler
+        <button
+          class="btn btn-primary"
+          type="submit"
+        >Inscription
         </button>
-
       </div>
+
     </div>
   </form>
 </div>
