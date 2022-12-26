@@ -15,7 +15,6 @@ export class UserListComponent implements OnInit {
     this.httpService
       .get<User[]>('https://restapi.fr/api/angularuser')
       .subscribe((users: User[]) => {
-        console.log(users);
         this.users = Array.isArray(users) ? users : [users];
       });
   }
