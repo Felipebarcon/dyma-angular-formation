@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { User } from '../user.interface';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-form',
@@ -14,7 +15,9 @@ export class UserFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private httpService: HttpClient,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -31,6 +34,13 @@ export class UserFormComponent implements OnInit {
   }
 
   submit() {
+    this.httpService
+      .post<User>('https://restapi.fr/api/angularuser', this.userForm.value)
+      .subscribe((user: User) => {
+        console.log(user);
+        this.router.navigateByUrl('/');
+      });
+
     console.log(this.userForm.value);
   }
 }

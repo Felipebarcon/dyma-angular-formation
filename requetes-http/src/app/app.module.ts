@@ -6,6 +6,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { RouterModule } from '@angular/router';
 import { APP_ROUTES } from './app.routing';
 import { UserFormComponent } from './user-form/user-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { UserFormComponent } from './user-form/user-form.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(APP_ROUTES),
+    HttpClientModule,
   ],
   declarations: [AppComponent, UserListComponent, UserFormComponent],
   bootstrap: [AppComponent],

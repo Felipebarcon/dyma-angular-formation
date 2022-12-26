@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user.interface';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-list',
@@ -8,7 +9,14 @@ import { User } from '../user.interface';
 })
 export class UserListComponent implements OnInit {
   public users?: User[];
-  constructor() {}
+  constructor(private httpService: HttpClient) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.httpService
+      .get<User[]>('https://restapi.fr/api/angularuser')
+      .subscribe((users: User[]) => {
+        console.log(users);
+        this.users = Array.isArray(users) ? users : [users];
+      });
+  }
 }
