@@ -1,0 +1,3 @@
+<ul *ngIf="names">
+  <li *ngFor="let name of names | filter:search">{{ name }}</li>
+</ul>

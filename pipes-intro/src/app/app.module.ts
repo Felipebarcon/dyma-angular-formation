@@ -7,10 +7,11 @@ import { registerLocaleData } from '@angular/common';
 import { CbPipe } from './cb.pipe';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
+import { UserListComponent } from './user-list/user-list.component';
 registerLocaleData(localeFr);
 
 @NgModule({
-  declarations: [AppComponent, CbPipe, FilterPipe],
+  declarations: [AppComponent, CbPipe, FilterPipe, UserListComponent],
   imports: [BrowserModule, FormsModule],
   providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent],
