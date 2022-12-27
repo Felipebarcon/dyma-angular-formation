@@ -27,7 +27,6 @@ export class UserFormComponent implements OnInit {
         this.httpService
           .get<User>(`https://restapi.fr/api/angularuser/${id}`)
           .subscribe((user: User) => {
-            console.log(user);
             this.user = user;
             this.userForm = this.initForm(user);
           });
