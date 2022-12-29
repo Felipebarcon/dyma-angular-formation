@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { state, style, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -23,10 +29,26 @@ import { state, style, trigger } from '@angular/animations';
           borderRadius: '50%',
         })
       ),
+      // transition('normal <=> wild', animate(1000)),
+      // transition('void => normal', animate(1000)),
+      // transition('* => *', animate(1000)),
+      // transition(':enter', animate('1s 1s ease-in')),
+      // transition(':leave', animate(1000)),
+      transition(':enter', [
+        style({
+          backgroundColor: 'blue',
+        }),
+        animate(
+          800,
+          style({
+            backgroundColor: 'green',
+          })
+        ),
+      ]),
     ]),
   ],
 })
 export class AppComponent {
-  public state = 'normal';
+  public state = 'wild';
   title = 'animation-app';
 }
