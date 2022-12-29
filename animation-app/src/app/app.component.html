@@ -1,10 +1,23 @@
-<div class="container d-flex flex-column flex-justify-content-center flex-align-items-center"
-     style="padding-top: 100px">
+<div
+  class="container d-flex flex-column flex-justify-content-center flex-align-items-center"
+  style="padding-top: 100px"
+>
   <div class="w-100 d-flex flew-row flex-justify-content-center">
-    <button class="btn btn-primary m-20">normal</button>
-    <button class="btn btn-primary m-20">wild</button>
+    <button
+      (click)="state = 'normal'"
+      class="btn btn-primary m-20"
+    >normal
+    </button>
+    <button
+      (click)="state = 'wild'"
+      class="btn btn-primary m-20"
+    >wild
+    </button>
   </div>
   <div class="w-100 d-flex flex-row flex-justify-content-center">
-    <div class="square"></div>
+    <div
+      [@square]="state"
+      class="square"
+    ></div>
   </div>
 </div>
