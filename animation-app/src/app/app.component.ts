@@ -91,13 +91,35 @@ import {
             opacity: 0,
             transform: 'translateX(-10px)',
           }),
-          stagger(-100, animate(400)),
+          stagger(-200, animate(1000)),
+        ])
+      ),
+      transition(
+        ':leave',
+        query('li', [
+          stagger(
+            -200,
+            animate(
+              1000,
+              style({
+                opacity: 0,
+                transform: 'translateX(10px)',
+              })
+            )
+          ),
         ])
       ),
     ]),
   ],
 })
 export class AppComponent {
+  public display = true;
   public state = 'normal';
   title = 'animation-app';
+
+  public toggle(event: any) {
+    if (event.phaseName === 'done') {
+      this.display = !this.display;
+    }
+  }
 }

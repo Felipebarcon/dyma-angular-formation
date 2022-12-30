@@ -24,7 +24,12 @@
     class="w-100 d-flex flex-row flex-justify-content-center"
     style="padding-top: 100px"
   >
-    <ul @list>
+    <ul
+      (@list.done)="toggle($event)"
+      (@list.start)="toggle($event)"
+      *ngIf="display"
+      @list
+    >
       <li>Je suis sûr que vous avez déjà entendu parler de TypeScript</li>
       <li>Je suis sûr que vous avez déjà entendu parler de TypeScript</li>
       <li>Je suis sûr que vous avez déjà entendu parler de TypeScript</li>
