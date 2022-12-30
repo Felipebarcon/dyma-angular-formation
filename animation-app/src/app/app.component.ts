@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {
   animate,
   group,
+  query,
+  stagger,
   state,
   style,
   transition,
@@ -76,6 +78,21 @@ import {
         //     }),
         //   ])
         // )
+      ),
+    ]),
+
+    /* Query and Stagger */
+
+    trigger('list', [
+      transition(
+        ':enter',
+        query('li', [
+          style({
+            opacity: 0,
+            transform: 'translateX(-10px)',
+          }),
+          stagger(-100, animate(400)),
+        ])
       ),
     ]),
   ],
