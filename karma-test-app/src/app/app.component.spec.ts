@@ -8,5 +8,9 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
-  it('App tittle shoul be app', () => {});
+  it('App tittle shoul be app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+
+    console.log(fixture.nativeElement.querySelector('span').innerHTML);
+  });
 });
