@@ -10,7 +10,15 @@ describe('AppComponent', () => {
 
   it('App tittle shoul be app', () => {
     const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    // const h1Content = fixture.nativeElement.querySelector('h1').textContent;
 
-    console.log(fixture.nativeElement.querySelector('span').innerHTML);
+    fixture.componentInstance.title = 'testapp3';
+    fixture.detectChanges();
+    const h1Content = fixture.nativeElement.querySelector('h1').textContent;
+
+    expect(h1Content).toEqual('Welcome testapp3');
+
+    // console.log(fixture.nativeElement.querySelector('span').innerHTML);
   });
 });
