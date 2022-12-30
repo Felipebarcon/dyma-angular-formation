@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {
   animate,
+  group,
   state,
   style,
   transition,
@@ -34,21 +35,52 @@ import {
       // transition('* => *', animate(1000)),
       // transition(':enter', animate('1s 1s ease-in')),
       // transition(':leave', animate(1000)),
-      transition(':enter', [
-        style({
-          backgroundColor: 'blue',
-        }),
-        animate(
-          800,
-          style({
-            backgroundColor: 'green',
-          })
-        ),
-      ]),
+      transition(
+        'normal => wild',
+        group([
+          animate(
+            200,
+            style({
+              borderRadius: '50%',
+            })
+          ),
+          animate(
+            2000,
+            style({
+              backgroundColor: 'red',
+            })
+          ),
+        ])
+        // animate(
+        //   2000,
+        //   keyframes([
+        //     style({
+        //       backgroundColor: 'yellow',
+        //       offset: 0,
+        //     }),
+        //     style({
+        //       backgroundColor: 'green',
+        //       offset: 0.2,
+        //     }),
+        //     style({
+        //       backgroundColor: 'blue',
+        //       offset: 0.4,
+        //     }),
+        //     style({
+        //       backgroundColor: 'orange',
+        //       offset: 0.6,
+        //     }),
+        //     style({
+        //       backgroundColor: 'teal',
+        //       offset: 0.8,
+        //     }),
+        //   ])
+        // )
+      ),
     ]),
   ],
 })
 export class AppComponent {
-  public state = 'wild';
+  public state = 'normal';
   title = 'animation-app';
 }
